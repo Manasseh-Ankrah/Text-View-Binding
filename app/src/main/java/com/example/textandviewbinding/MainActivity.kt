@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             val password = binding.editPassword.text
 
             // Local Authentication process
-            if (username.toString().equals("mandev") && password.toString().equals("123")) {
+            if (username.toString().equals("mandev",true) && password.toString().equals("123")) {
                 //Display Toast when user credential matches the stated values
                 Toast.makeText(this , "Welcome to Android Kotlin", Toast.LENGTH_SHORT).show()
             } else {
