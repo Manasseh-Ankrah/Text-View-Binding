@@ -3,16 +3,16 @@ package com.example.textandviewbinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.textandviewbinding.databinding.TextinputMainBinding
+import com.example.textandviewbinding.databinding.ButtonsMainBinding
 
-class TextInputLayoutActivity : AppCompatActivity() {
+class WidgetActivity : AppCompatActivity() {
     //Initializing bindings
-    private lateinit var binding: TextinputMainBinding
+    private lateinit var binding: ButtonsMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //Inflate the activity binding
-        binding = TextinputMainBinding.inflate(layoutInflater )
+        binding = ButtonsMainBinding.inflate(layoutInflater )
         val view = binding.root
         setContentView(view)
         // setContentView(R.layout.activity_main)
