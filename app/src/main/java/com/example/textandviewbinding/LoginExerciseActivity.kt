@@ -43,6 +43,7 @@ class LoginExerciseActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener {
             val username = binding.editUsername.text
             val password = binding.editPassword.text
+            var attemptCount:Int = 0
 
 //            // Local Authentication process
 
@@ -57,7 +58,7 @@ class LoginExerciseActivity : AppCompatActivity() {
                     if (getUser.equals(password.toString())) {
                Log.w("BLACK FIRED ==>>", "BLACK FIRED ==>> ${password.toString()}") // Warning log
 
-                      val snack= Snackbar.make(it,"Hi, $username welcome to Android Kotlin",Snackbar.LENGTH_LONG)
+                       val snack= Snackbar.make(it,"Hi,$username welcome to Android Kotlin",Snackbar.LENGTH_LONG)
                         snack.show()
                         snack.setAction("Details", {displayToast()})
                     } else {
@@ -65,7 +66,14 @@ class LoginExerciseActivity : AppCompatActivity() {
                     }
 
                 } else {
-                    Snackbar.make(it,"Invalid Login Attempt",Snackbar.LENGTH_LONG).show()
+                    val snack=  Snackbar.make(it,"Invalid Login Attempt",Snackbar.LENGTH_LONG)
+                    snack.show()
+
+
+//                    snack.setAction("Details", {addTextView("Invalid Login ${attemptCount}: ${Calendar.getInstance().time}")})
+
+//                    snack.setAction("Details",{addTextView("Login Succesful: ${Calendar.getInstance().time})
+
                 }
 
             } else {
@@ -94,13 +102,14 @@ class LoginExerciseActivity : AppCompatActivity() {
 
     }
 
-    private fun addTextView(text:String) {
+    private fun addTextView(text:String,attemptCount:String) {
         val textView1 = TextView(this)
         textView1.text = text
         textView1.textSize = 16f
         textView1.textAlignment = View.TEXT_ALIGNMENT_CENTER
         binding.myLayout.addView(textView1)
     }
+
     private fun displayToast() {
         Toast.makeText(this , "Login Successful ${Calendar.getInstance().time}", Toast.LENGTH_SHORT).show()
     }
