@@ -3,6 +3,7 @@ package com.example.textandviewbinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.example.textandviewbinding.databinding.LoginMainBinding
 import com.google.android.material.snackbar.Snackbar
@@ -33,7 +34,10 @@ class LoginActivity : AppCompatActivity() {
                 //Snackbar.make(it,"Hi, $username welcome to Android Kotlin",Snackbar.LENGTH_LONG).show()
                 //Display snackbar with button
                 val snack = Snackbar.make(it,"Hi, $username welcome to Android Kotlin",Snackbar.LENGTH_LONG)
-                snack.setAction("Details", {displayToast()})
+//                snack.setAction("Details", {displayToast()})
+                // Conditional Rendering of View
+                snack.setAction("Details", {addTextView("Login Succesful: ${Calendar.getInstance().time}")})
+
                 snack.show()
             } else {
                 //Toast.makeText(this , "Invalid Login Attempt", Toast.LENGTH_SHORT).show()
@@ -43,6 +47,13 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    private fun addTextView(text:String) {
+        val textView1 = TextView(this)
+        textView1.text = text
+        textView1.textSize = 16f
+        textView1.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        binding.myLayout.addView(textView1)
+    }
     private fun displayToast() {
         Toast.makeText(this , "Invalid Login Attempt ${Calendar.getInstance().time}", Toast.LENGTH_SHORT).show()
     }
