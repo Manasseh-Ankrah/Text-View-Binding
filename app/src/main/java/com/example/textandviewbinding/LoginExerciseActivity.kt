@@ -10,6 +10,7 @@ import com.example.textandviewbinding.databinding.LoginExerciseMainBinding
 import com.google.android.material.snackbar.Snackbar
 import java.util.Arrays
 import java.util.Calendar
+import kotlin.system.exitProcess
 
 class LoginExerciseActivity : AppCompatActivity() {
     //Initializing bindings
@@ -29,13 +30,8 @@ class LoginExerciseActivity : AppCompatActivity() {
         //Log.w("Account==>>", "Accounts ==>> ${usernames.size}") // Warning log
         //Log.w("Usernames ==>>", "Accounts ==>> ${"mandev" in usernames}") // Warning log
         //Log.w("Passwords==>>", "Accounts ==>> ${"123" in passwords}") // Warning log
-        Log.w("mapAccounts ==>>", "mapAccounts ==>> ${mapAccounts.containsKey("mandev")}") // Warning log
-        Log.w("mapAccounts ==>>", "mapAccounts ==>> ${mapAccounts.get("mandev")}") // Warning log
-
-
-
-
-
+//        Log.w("mapAccounts ==>>", "mapAccounts ==>> ${mapAccounts.containsKey("mandev")}") // Warning log
+//        Log.w("mapAccounts ==>>", "mapAccounts ==>> ${mapAccounts.get("mandev")}") // Warning log
 
 
 
@@ -45,39 +41,29 @@ class LoginExerciseActivity : AppCompatActivity() {
             val password = binding.editPassword.text
 
 
+            if (attemptCount.toInt()  === 3) {
+                Toast.makeText(this , "You have reached a maximum of $attemptCount invalid Login Attempts", Toast.LENGTH_SHORT).show()
+                exitProcess(-1)
+            }
+
 //            // Local Authentication process
 
-//            Log.w("getUser val ==>>", "getUser ==>> ${getUser}") // Warning log
-//            Log.w("password val ==>>", "getUser ==>> ${password.toString()}") // Warning log
-
             val getUser = mapAccounts.get(username.toString().trim())
-
 
             if (username.toString().isNotEmpty() && password.toString().isNotEmpty()) {
                 if (mapAccounts.containsKey(username.toString().trim())) {
                     if (getUser.equals(password.toString())) {
-               Log.w("BLACK FIRED ==>>", "BLACK FIRED ==>> ${password.toString()}") // Warning log
-
                        val snack= Snackbar.make(it,"Hi,$username welcome to Android Kotlin",Snackbar.LENGTH_LONG)
                         snack.show()
                         snack.setAction("Details", {displayToast()})
                     } else {
                         Snackbar.make(it,"Incorrect password",Snackbar.LENGTH_LONG).show()
                     }
-
                 } else {
                     val snack=  Snackbar.make(it,"Invalid Login Attempt",Snackbar.LENGTH_LONG)
                     snack.show()
                      attemptCount++
-
                     snack.setAction("Details",{addTextView(attemptCount.toString())})
-
-
-//                    snack.setAction("Details", {addTextView("Invalid Login $attemptCount: ${Calendar.getInstance().time}")})
-//                snack.setAction("Details", {addTextView("Login Succesful: ${Calendar.getInstance().time}")})
-
-//                    snack.setAction("Details",{addTextView("Login Succesful: ${Calendar.getInstance().time})
-
                 }
 
             } else {
@@ -89,8 +75,9 @@ class LoginExerciseActivity : AppCompatActivity() {
     }
 
     private fun addTextView(attemptCount:String) {
+
         val textView1 = TextView(this)
-        val printText = "Invalid Login $attemptCount: ${Calendar.getInstance().time}"
+        val printText = "Invalid Login #$attemptCount: ${Calendar.getInstance().time}"
         textView1.text = printText
         textView1.textSize = 16f
         textView1.textAlignment = View.TEXT_ALIGNMENT_CENTER
