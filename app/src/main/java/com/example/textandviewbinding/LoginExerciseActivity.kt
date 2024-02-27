@@ -84,24 +84,6 @@ class LoginExerciseActivity : AppCompatActivity() {
                 Snackbar.make(it,"All fields are required",Snackbar.LENGTH_LONG).show()
             }
 
-
-
-//            if (username.toString() in usernames && password.toString() in passwords) {
-//                //Display Toast when user credential matches the stated values
-//                //  Toast.makeText(this , "Welcome to Android Kotlin", Toast.LENGTH_SHORT).show()
-//                // Display Normal Snackbar
-//                //Snackbar.make(it,"Hi, $username welcome to Android Kotlin",Snackbar.LENGTH_LONG).show()
-//                //Display snackbar with button
-//                val snack = Snackbar.make(it,"Hi, $username welcome to Android Kotlin",Snackbar.LENGTH_LONG)
-////                snack.setAction("Details", {displayToast()})
-//                // Conditional Rendering of View
-//                snack.setAction("Details", {addTextView("Login Succesful: ${Calendar.getInstance().time}")})
-//
-//                snack.show()
-//            } else {
-//                //Toast.makeText(this , "Invalid Login Attempt", Toast.LENGTH_SHORT).show()
-//                Snackbar.make(it,"Invalid Login Attempt",Snackbar.LENGTH_LONG).show()
-//            }
         }
 
     }
