@@ -16,7 +16,7 @@ class LoginExerciseActivity : AppCompatActivity() {
     private lateinit var binding: LoginExerciseMainBinding
 
     private var mapAccounts = mapOf<String,String>("mandev" to "123","john" to "12345","millie" to "123456","matt" to "456")
-
+    var attemptCount:Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +43,7 @@ class LoginExerciseActivity : AppCompatActivity() {
         binding.btnSubmit.setOnClickListener {
             val username = binding.editUsername.text
             val password = binding.editPassword.text
-            var attemptCount:Int = 0
+
 
 //            // Local Authentication process
 
@@ -68,9 +68,13 @@ class LoginExerciseActivity : AppCompatActivity() {
                 } else {
                     val snack=  Snackbar.make(it,"Invalid Login Attempt",Snackbar.LENGTH_LONG)
                     snack.show()
+                     attemptCount++
+
+                    snack.setAction("Details",{addTextView(attemptCount.toString())})
 
 
-//                    snack.setAction("Details", {addTextView("Invalid Login ${attemptCount}: ${Calendar.getInstance().time}")})
+//                    snack.setAction("Details", {addTextView("Invalid Login $attemptCount: ${Calendar.getInstance().time}")})
+//                snack.setAction("Details", {addTextView("Login Succesful: ${Calendar.getInstance().time}")})
 
 //                    snack.setAction("Details",{addTextView("Login Succesful: ${Calendar.getInstance().time})
 
@@ -102,9 +106,10 @@ class LoginExerciseActivity : AppCompatActivity() {
 
     }
 
-    private fun addTextView(text:String,attemptCount:String) {
+    private fun addTextView(attemptCount:String) {
         val textView1 = TextView(this)
-        textView1.text = text
+        val printText = "Invalid Login $attemptCount: ${Calendar.getInstance().time}"
+        textView1.text = printText
         textView1.textSize = 16f
         textView1.textAlignment = View.TEXT_ALIGNMENT_CENTER
         binding.myLayout.addView(textView1)
